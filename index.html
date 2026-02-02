@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inked Studio - Custom T-Shirt Design & Print</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Work+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    :root {
+      --ink-black: #1a1a1a;
+      --paper-cream: #faf8f3;
+      --rust-orange: #d4682f;
+      --forest-green: #2d5541;
+      --clay-brown: #8b6f5c;
+      --soft-blue: #7ba3b8;
+      --highlight: #ffd97d;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Work Sans', sans-serif;
+      background-color: var(--paper-cream);
+      color: var(--ink-black);
+      overflow-x: hidden;
+    }
+
+    /* Noise texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.03;
+      z-index: 9999;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    .app-container {
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Header */
+    header {
+      background: var(--ink-black);
+      color: var(--paper-cream);
+      padding: 2rem 2rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 20px;
+      background: repeating-linear-gradient(
+        45deg,
+        var(--rust-orange),
+        var(--rust-orange) 10px,
+        var(--forest-green) 10px,
+        var(--forest-green) 20px
+      );
+      animation: slideStripes 20s linear infinite;
+    }
+
+    @keyframes slideStripes {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(28px); }
+    }
+
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      letter-spacing: 0.05em;
+      line-height: 1;
+      position: relative;
+      animation: fadeInDown 0.8s ease-out;
+    }
+
+    .logo-subtitle {
+      font-family: 'Crimson Text', serif;
+      font-size: 0.9rem;
+      font-style: italic;
+      letter-spacing: 0.1em;
+      opacity: 0.8;
+      margin-top: 0.3rem;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+      animation: fadeIn 1s ease-out 0.3s both;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    nav button {
+      background: none;
+      border: none;
+      color: var(--paper-cream);
+      font-family: 'Work Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      position: relative;
+      padding: 0.5rem 0;
+      transition: color 0.3s;
+    }
+
+    nav button::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--rust-orange);
+      transition: width 0.3s ease;
+    }
+
+    nav button:hover::after,
+    nav button.active::after {
+      width: 100%;
+    }
+
+    nav button:hover {
+      color: var(--rust-orange);
+    }
+
+    /* Main Content */
+    main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 3rem 2rem;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 4rem;
+      animation: fadeInUp 0.8s ease-out 0.5s both;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      letter-spacing: 0.03em;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      color: var(--ink-black);
+    }
+
+    .hero p {
+      font-family: 'Crimson Text', serif;
+      font-size: 1.3rem;
+      color: var(--clay-brown);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Design Studio */
+    .design-studio {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 3rem;
+      margin-bottom: 4rem;
+      animation: fadeIn 0.8s ease-out 0.7s both;
+    }
+
+    @media (max-width: 968px) {
+      .design-studio {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .controls-panel {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 3px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border-top: 4px solid var(--rust-orange);
+    }
+
+    .control-group {
+      margin-bottom: 2rem;
+    }
+
+    .control-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .control-group label {
+      display: block;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+      color: var(--ink-black);
+      margin-bottom: 0.8rem;
+    }
+
+    .control-group input[type="text"],
+    .control-group textarea,
+    .control-group select {
+      width: 100%;
+      padding: 0.9rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 3px;
+      font-family: 'Work Sans', sans-serif;
+      font-size: 1rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .control-group input[type="text"]:focus,
+    .control-group textarea:focus,
+    .control-group select:focus {
+      outline: none;
+      border-color: var(--rust-orange);
+      box-shadow: 0 0 0 3px rgba(212, 104, 47, 0.1);
+    }
+
+    .control-group textarea {
+      resize: vertical;
+      min-height: 100px;
+      font-family: 'Crimson Text', serif;
+      font-size: 1.1rem;
+    }
+
+    .color-picker-group {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .color-option {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .color-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+    }
+
+    .color-swatch {
+      width: 100%;
+      height: 60px;
+      border-radius: 3px;
+      border: 3px solid transparent;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .color-option input[type="radio"]:checked + .color-swatch {
+      border-color: var(--ink-black);
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .color-option:hover .color-swatch {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    /* T-Shirt Preview */
+    .preview-panel {
+      position: sticky;
+      top: 2rem;
+    }
+
+    .tshirt-preview {
+      background: white;
+      padding: 3rem;
+      border-radius: 3px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border-top: 4px solid var(--forest-green);
+      min-height: 500px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .preview-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+      color: var(--clay-brown);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .tshirt-canvas {
+      width: 100%;
+      max-width: 400px;
+      aspect-ratio: 3/4;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 3px;
+      transition: background-color 0.5s ease;
+      padding: 3rem;
+    }
+
+    .design-content {
+      text-align: center;
+      max-width: 100%;
+      word-wrap: break-word;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .design-text {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      transition: all 0.3s;
+    }
+
+    .design-subtext {
+      font-family: 'Crimson Text', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      opacity: 0.9;
+      transition: all 0.3s;
+    }
+
+    /* Action Buttons */
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 3px;
+      font-family: 'Work Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary {
+      background: var(--rust-orange);
+      color: white;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .btn-primary:hover {
+      background: #c25a25;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(212, 104, 47, 0.3);
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--ink-black);
+      border: 2px solid var(--ink-black);
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .btn-secondary:hover {
+      background: var(--ink-black);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Gallery Section */
+    .gallery-section {
+      margin-top: 5rem;
+      animation: fadeIn 0.8s ease-out 0.9s both;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      letter-spacing: 0.05em;
+      text-align: center;
+      margin-bottom: 2rem;
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--rust-orange);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .gallery-item {
+      background: white;
+      border-radius: 3px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    }
+
+    .gallery-image {
+      width: 100%;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .gallery-info {
+      padding: 1.5rem;
+      border-top: 2px solid #f0f0f0;
+    }
+
+    .gallery-info h3 {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .gallery-info p {
+      font-size: 0.9rem;
+      color: var(--clay-brown);
+    }
+
+    /* Footer */
+    footer {
+      background: var(--ink-black);
+      color: var(--paper-cream);
+      padding: 3rem 2rem;
+      margin-top: 5rem;
+      text-align: center;
+    }
+
+    footer p {
+      font-family: 'Crimson Text', serif;
+      font-size: 1rem;
+      opacity: 0.8;
+    }
+
+    /* Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(26, 26, 26, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      animation: fadeIn 0.3s ease;
+      padding: 2rem;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 3rem;
+      border-radius: 3px;
+      max-width: 500px;
+      width: 100%;
+      position: relative;
+      animation: scaleIn 0.3s ease;
+      border-top: 4px solid var(--rust-orange);
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--clay-brown);
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.3s;
+    }
+
+    .modal-close:hover {
+      background: #f0f0f0;
+      color: var(--ink-black);
+    }
+
+    .modal-content h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 0.05em;
+      margin-bottom: 1rem;
+    }
+
+    .modal-content p {
+      font-family: 'Crimson Text', serif;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--clay-brown);
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    function App() {
+      const [activeView, setActiveView] = useState('design');
+      const [designText, setDesignText] = useState('YOUR DESIGN HERE');
+      const [subText, setSubText] = useState('Make it yours');
+      const [shirtColor, setShirtColor] = useState('#2d5541');
+      const [textColor, setTextColor] = useState('#faf8f3');
+      const [fontStyle, setFontStyle] = useState('bebas');
+      const [showModal, setShowModal] = useState(false);
+
+      const shirtColors = [
+        { name: 'Forest Green', value: '#2d5541' },
+        { name: 'Rust Orange', value: '#d4682f' },
+        { name: 'Ink Black', value: '#1a1a1a' },
+        { name: 'Clay Brown', value: '#8b6f5c' },
+        { name: 'Soft Blue', value: '#7ba3b8' },
+        { name: 'Paper Cream', value: '#faf8f3' }
+      ];
+
+      const textColors = [
+        { name: 'White', value: '#ffffff' },
+        { name: 'Black', value: '#1a1a1a' },
+        { name: 'Cream', value: '#faf8f3' },
+        { name: 'Orange', value: '#d4682f' },
+        { name: 'Green', value: '#2d5541' },
+        { name: 'Gold', value: '#ffd97d' }
+      ];
+
+      const exampleDesigns = [
+        { text: 'STAY WILD', sub: 'Adventure awaits', color: '#2d5541', textColor: '#faf8f3' },
+        { text: 'COFFEE & CODE', sub: 'Developer life', color: '#1a1a1a', textColor: '#ffd97d' },
+        { text: 'SUNSET VIBES', sub: 'California dreaming', color: '#d4682f', textColor: '#ffffff' },
+        { text: 'MOUNTAIN SOUL', sub: 'Born to roam', color: '#7ba3b8', textColor: '#ffffff' }
+      ];
+
+      const getFontFamily = () => {
+        switch(fontStyle) {
+          case 'bebas':
+            return "'Bebas Neue', sans-serif";
+          case 'crimson':
+            return "'Crimson Text', serif";
+          case 'work':
+            return "'Work Sans', sans-serif";
+          default:
+            return "'Bebas Neue', sans-serif";
+        }
+      };
+
+      const handleDownload = () => {
+        setShowModal(true);
+      };
+
+      const handleOrder = () => {
+        setShowModal(true);
+      };
+
+      return (
+        <div className="app-container">
+          <header>
+            <div className="header-content">
+              <div>
+                <div className="logo">INKED STUDIO</div>
+                <div className="logo-subtitle">Custom Design & Print</div>
+              </div>
+              <nav>
+                <button 
+                  className={activeView === 'design' ? 'active' : ''}
+                  onClick={() => setActiveView('design')}
+                >
+                  Design
+                </button>
+                <button 
+                  className={activeView === 'gallery' ? 'active' : ''}
+                  onClick={() => setActiveView('gallery')}
+                >
+                  Gallery
+                </button>
+                <button 
+                  className={activeView === 'about' ? 'active' : ''}
+                  onClick={() => setActiveView('about')}
+                >
+                  About
+                </button>
+              </nav>
+            </div>
+          </header>
+
+          <main>
+            {activeView === 'design' && (
+              <>
+                <div className="hero">
+                  <h1>CREATE YOUR SIGNATURE LOOK</h1>
+                  <p>Design custom t-shirts with our intuitive studio. Choose colors, add text, and bring your vision to life.</p>
+                </div>
+
+                <div className="design-studio">
+                  <div className="controls-panel">
+                    <div className="control-group">
+                      <label>Main Text</label>
+                      <input 
+                        type="text"
+                        value={designText}
+                        onChange={(e) => setDesignText(e.target.value)}
+                        placeholder="Enter your text"
+                      />
+                    </div>
+
+                    <div className="control-group">
+                      <label>Subtitle</label>
+                      <input 
+                        type="text"
+                        value={subText}
+                        onChange={(e) => setSubText(e.target.value)}
+                        placeholder="Add a subtitle"
+                      />
+                    </div>
+
+                    <div className="control-group">
+                      <label>Font Style</label>
+                      <select value={fontStyle} onChange={(e) => setFontStyle(e.target.value)}>
+                        <option value="bebas">Bold Display (Bebas)</option>
+                        <option value="crimson">Elegant Serif (Crimson)</option>
+                        <option value="work">Modern Sans (Work Sans)</option>
+                      </select>
+                    </div>
+
+                    <div className="control-group">
+                      <label>Shirt Color</label>
+                      <div className="color-picker-group">
+                        {shirtColors.map((color) => (
+                          <label key={color.value} className="color-option">
+                            <input 
+                              type="radio"
+                              name="shirtColor"
+                              value={color.value}
+                              checked={shirtColor === color.value}
+                              onChange={(e) => setShirtColor(e.target.value)}
+                            />
+                            <div 
+                              className="color-swatch"
+                              style={{ 
+                                backgroundColor: color.value,
+                                color: color.value === '#faf8f3' ? '#1a1a1a' : '#ffffff'
+                              }}
+                            >
+                              {color.name}
+                            </div>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="control-group">
+                      <label>Text Color</label>
+                      <div className="color-picker-group">
+                        {textColors.map((color) => (
+                          <label key={color.value} className="color-option">
+                            <input 
+                              type="radio"
+                              name="textColor"
+                              value={color.value}
+                              checked={textColor === color.value}
+                              onChange={(e) => setTextColor(e.target.value)}
+                            />
+                            <div 
+                              className="color-swatch"
+                              style={{ 
+                                backgroundColor: color.value,
+                                color: color.value === '#ffffff' || color.value === '#faf8f3' ? '#1a1a1a' : '#ffffff'
+                              }}
+                            >
+                              {color.name}
+                            </div>
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="preview-panel">
+                    <div className="tshirt-preview">
+                      <div className="preview-label">LIVE PREVIEW</div>
+                      <div 
+                        className="tshirt-canvas"
+                        style={{ backgroundColor: shirtColor }}
+                      >
+                        <div className="design-content">
+                          <div 
+                            className="design-text"
+                            style={{ 
+                              color: textColor,
+                              fontFamily: getFontFamily()
+                            }}
+                          >
+                            {designText || 'YOUR DESIGN HERE'}
+                          </div>
+                          {subText && (
+                            <div 
+                              className="design-subtext"
+                              style={{ color: textColor }}
+                            >
+                              {subText}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                      <div className="action-buttons">
+                        <button className="btn btn-primary" onClick={handleOrder}>
+                          Order Print
+                        </button>
+                        <button className="btn btn-secondary" onClick={handleDownload}>
+                          Save Design
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+
+            {activeView === 'gallery' && (
+              <div className="gallery-section">
+                <h2 className="section-title">FEATURED DESIGNS</h2>
+                <div className="gallery-grid">
+                  {exampleDesigns.map((design, index) => (
+                    <div 
+                      key={index} 
+                      className="gallery-item"
+                      onClick={() => {
+                        setDesignText(design.text);
+                        setSubText(design.sub);
+                        setShirtColor(design.color);
+                        setTextColor(design.textColor);
+                        setActiveView('design');
+                      }}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      <div 
+                        className="gallery-image"
+                        style={{ 
+                          backgroundColor: design.color,
+                          color: design.textColor
+                        }}
+                      >
+                        <div>
+                          <div style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '1.8rem' }}>
+                            {design.text}
+                          </div>
+                          <div style={{ fontFamily: "'Crimson Text', serif", fontSize: '0.9rem', fontStyle: 'italic', marginTop: '0.5rem' }}>
+                            {design.sub}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="gallery-info">
+                        <h3>{design.text}</h3>
+                        <p>Click to customize this design</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {activeView === 'about' && (
+              <div className="gallery-section">
+                <h2 className="section-title">ABOUT INKED STUDIO</h2>
+                <div style={{ maxWidth: '800px', margin: '3rem auto', textAlign: 'center' }}>
+                  <p style={{ 
+                    fontFamily: "'Crimson Text', serif", 
+                    fontSize: '1.3rem', 
+                    lineHeight: '1.8',
+                    color: 'var(--clay-brown)',
+                    marginBottom: '2rem'
+                  }}>
+                    We believe every design tells a story. At Inked Studio, we combine traditional screen printing 
+                    aesthetics with modern digital tools to help you create t-shirts that are uniquely yours.
+                  </p>
+                  <p style={{ 
+                    fontFamily: "'Crimson Text', serif", 
+                    fontSize: '1.3rem', 
+                    lineHeight: '1.8',
+                    color: 'var(--clay-brown)',
+                    marginBottom: '2rem'
+                  }}>
+                    Our commitment to quality craftsmanship and sustainable materials ensures that your custom 
+                    designs look great and last long. From concept to creation, we're here to help you express yourself.
+                  </p>
+                  <div className="action-buttons" style={{ justifyContent: 'center', marginTop: '3rem' }}>
+                    <button 
+                      className="btn btn-primary"
+                      onClick={() => setActiveView('design')}
+                    >
+                      Start Designing
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
+          </main>
+
+          <footer>
+            <p>© 2024 Inked Studio. Crafted with care for creators everywhere.</p>
+          </footer>
+
+          {showModal && (
+            <div className="modal-overlay" onClick={() => setShowModal(false)}>
+              <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                <button className="modal-close" onClick={() => setShowModal(false)}>×</button>
+                <h2>COMING SOON</h2>
+                <p>
+                  Our printing and ordering system is currently in development. 
+                  For now, take a screenshot of your design and reach out to us directly to place an order!
+                </p>
+                <p style={{ fontSize: '1rem', opacity: 0.7 }}>
+                  Contact: hello@inkedstudio.example
+                </p>
+                <button 
+                  className="btn btn-primary" 
+                  style={{ width: '100%', marginTop: '1rem' }}
+                  onClick={() => setShowModal(false)}
+                >
+                  Got It
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    ReactDOM.render(<App />, document.getElementById('root'));
+  </script>
+</body>
+</html>
