@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Work+Sans:wght@400;500;700&display=swap" rel="stylesheet">
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <style>
     :root {
@@ -206,99 +206,12 @@
       font-family: 'Crimson Text', serif;
       font-size: 1.3rem;
       color: var(--clay-brown);
-      max-width: 700px;
+      max-width: 600px;
       margin: 0 auto;
       line-height: 1.6;
     }
 
-    /* Quote Form Styles */
-    .quote-section {
-      max-width: 800px;
-      margin: 0 auto;
-      animation: fadeIn 0.8s ease-out 0.7s both;
-    }
-
-    .form-card {
-      background: white;
-      padding: 3rem;
-      border-radius: 3px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-      border-top: 4px solid var(--rust-orange);
-    }
-
-    .form-section {
-      margin-bottom: 2rem;
-    }
-
-    .form-section:last-child {
-      margin-bottom: 0;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    @media (max-width: 640px) {
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-
-    .form-label {
-      display: block;
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1rem;
-      letter-spacing: 0.05em;
-      color: var(--ink-black);
-      margin-bottom: 0.6rem;
-    }
-
-    .required {
-      color: var(--rust-orange);
-    }
-
-    .form-input,
-    .form-select,
-    .form-textarea {
-      width: 100%;
-      padding: 0.9rem;
-      border: 2px solid #e0e0e0;
-      border-radius: 3px;
-      font-family: 'Work Sans', sans-serif;
-      font-size: 1rem;
-      transition: border-color 0.3s, box-shadow 0.3s;
-    }
-
-    .form-input:focus,
-    .form-select:focus,
-    .form-textarea:focus {
-      outline: none;
-      border-color: var(--rust-orange);
-      box-shadow: 0 0 0 3px rgba(212, 104, 47, 0.1);
-    }
-
-    .form-textarea {
-      min-height: 120px;
-      resize: vertical;
-      font-family: 'Crimson Text', serif;
-      font-size: 1.05rem;
-    }
-
-    .form-note {
-      font-size: 0.85rem;
-      color: var(--clay-brown);
-      margin-top: 0.5rem;
-      font-style: italic;
-    }
-
-    /* Design Studio (moved to secondary page) */
+    /* Design Studio */
     .design-studio {
       display: grid;
       grid-template-columns: 1fr 1.2fr;
@@ -472,22 +385,6 @@
       transition: all 0.3s;
     }
 
-    .design-image {
-      max-width: 80%;
-      max-height: 250px;
-      object-fit: contain;
-      margin-bottom: 1rem;
-      animation: fadeIn 0.5s ease;
-      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
-    }
-
-    .image-text-combo {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-    }
-
     /* Action Buttons */
     .action-buttons {
       display: flex;
@@ -616,63 +513,6 @@
       color: var(--clay-brown);
     }
 
-    /* Success Message */
-    .success-card {
-      background: white;
-      padding: 4rem 3rem;
-      border-radius: 3px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-      border-top: 4px solid var(--forest-green);
-      text-align: center;
-      animation: scaleIn 0.5s ease;
-    }
-
-    @keyframes scaleIn {
-      from {
-        opacity: 0;
-        transform: scale(0.95);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    .success-icon {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      background: var(--forest-green);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 2rem;
-    }
-
-    .success-icon svg {
-      width: 40px;
-      height: 40px;
-      stroke: white;
-      stroke-width: 3;
-      fill: none;
-    }
-
-    .success-card h2 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 2.5rem;
-      letter-spacing: 0.05em;
-      margin-bottom: 1rem;
-      color: var(--ink-black);
-    }
-
-    .success-card p {
-      font-family: 'Crimson Text', serif;
-      font-size: 1.2rem;
-      color: var(--clay-brown);
-      line-height: 1.6;
-      margin-bottom: 2rem;
-    }
-
     /* Footer */
     footer {
       background: var(--ink-black);
@@ -713,6 +553,17 @@
       position: relative;
       animation: scaleIn 0.3s ease;
       border-top: 4px solid var(--rust-orange);
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
     .modal-close {
@@ -761,7 +612,7 @@
     const { useState } = React;
 
     function App() {
-      const [activeView, setActiveView] = useState('quote');
+      const [activeView, setActiveView] = useState('design');
       const [designText, setDesignText] = useState('YOUR DESIGN HERE');
       const [subText, setSubText] = useState('Make it yours');
       const [shirtColor, setShirtColor] = useState('#2d5541');
@@ -769,28 +620,49 @@
       const [fontStyle, setFontStyle] = useState('bebas');
       const [showModal, setShowModal] = useState(false);
       const [selectedTemplate, setSelectedTemplate] = useState('none');
-      const [quoteSubmitted, setQuoteSubmitted] = useState(false);
-      const [formData, setFormData] = useState({
-        churchName: '',
-        contactName: '',
-        email: '',
-        phone: '',
-        productType: 'apparel',
-        quantity: '',
-        sizes: '',
-        eventDate: '',
-        message: '',
-      });
 
-      const templateDesigns = [
-        { id: 'none', name: 'No Template', url: '' },
-        { id: 'skull', name: 'Skull Design', url: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"%3E%3Cpath fill="white" d="M100 20c-30 0-50 20-50 50 0 15 5 25 10 35l-5 30h90l-5-30c5-10 10-20 10-35 0-30-20-50-50-50zm-20 50c-5.5 0-10-4.5-10-10s4.5-10 10-10 10 4.5 10 10-4.5 10-10 10zm40 0c-5.5 0-10-4.5-10-10s4.5-10 10-10 10 4.5 10 10-4.5 10-10 10z"/%3E%3C/svg%3E' },
-        { id: 'mountain', name: 'Mountain Scene', url: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"%3E%3Cpath fill="white" d="M20 140l40-60 30 40 35-50 45 70z"/%3E%3Ccircle cx="160" cy="40" r="15" fill="white"/%3E%3C/svg%3E' },
-        { id: 'flower', name: 'Floral Pattern', url: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"%3E%3Ccircle cx="100" cy="100" r="15" fill="white"/%3E%3Ccircle cx="100" cy="70" r="20" fill="white" opacity="0.8"/%3E%3Ccircle cx="100" cy="130" r="20" fill="white" opacity="0.8"/%3E%3Ccircle cx="70" cy="100" r="20" fill="white" opacity="0.8"/%3E%3Ccircle cx="130" cy="100" r="20" fill="white" opacity="0.8"/%3E%3Ccircle cx="80" cy="80" r="15" fill="white" opacity="0.6"/%3E%3Ccircle cx="120" cy="80" r="15" fill="white" opacity="0.6"/%3E%3Ccircle cx="80" cy="120" r="15" fill="white" opacity="0.6"/%3E%3Ccircle cx="120" cy="120" r="15" fill="white" opacity="0.6"/%3E%3C/svg%3E' },
-        { id: 'geometric', name: 'Geometric Shapes', url: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"%3E%3Cpolygon points="100,30 150,90 130,150 70,150 50,90" fill="none" stroke="white" stroke-width="3"/%3E%3Ccircle cx="100" cy="100" r="40" fill="none" stroke="white" stroke-width="3"/%3E%3Crect x="80" y="80" width="40" height="40" fill="none" stroke="white" stroke-width="3"/%3E%3C/svg%3E' },
-        { id: 'coffee', name: 'Coffee Cup', url: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"%3E%3Cpath fill="white" d="M60 60h60v70c0 15-10 25-25 25h-10c-15 0-25-10-25-25V60z"/%3E%3Cpath fill="white" d="M120 80h15c8 0 15 7 15 15v10c0 8-7 15-15 15h-15"/%3E%3Cpath fill="none" stroke="white" stroke-width="3" d="M75 45c0-10 5-15 10-15s10 5 10 15M90 45c0-10 5-15 10-15s10 5 10 15M105 45c0-10 5-15 10-15s10 5 10 15"/%3E%3C/svg%3E' },
-        { id: 'wave', name: 'Wave Pattern', url: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"%3E%3Cpath fill="none" stroke="white" stroke-width="4" d="M20 80 Q 50 60, 80 80 T 140 80 T 200 80"/%3E%3Cpath fill="none" stroke="white" stroke-width="4" d="M20 100 Q 50 80, 80 100 T 140 100 T 200 100"/%3E%3Cpath fill="none" stroke="white" stroke-width="4" d="M20 120 Q 50 100, 80 120 T 140 120 T 200 120"/%3E%3C/svg%3E' },
-        { id: 'star', name: 'Star Burst', url: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"%3E%3Cpolygon points="100,30 115,75 160,80 125,110 135,155 100,130 65,155 75,110 40,80 85,75" fill="white"/%3E%3Ccircle cx="100" cy="100" r="15" fill="white"/%3E%3C/svg%3E' }
+
+       const templateDesigns = [
+        { 
+          id: 'none', 
+          name: 'No Template', 
+          url: '' 
+        },
+        { 
+          id: 'skull', 
+          name: 'Skull Design', 
+          url: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"%3E%3Cpath fill="white" d="M100 20c-30 0-50 20-50 50 0 15 5 25 10 35l-5 30h90l-5-30c5-10 10-20 10-35 0-30-20-50-50-50zm-20 50c-5.5 0-10-4.5-10-10s4.5-10 10-10 10 4.5 10 10-4.5 10-10 10zm40 0c-5.5 0-10-4.5-10-10s4.5-10 10-10 10 4.5 10 10-4.5 10-10 10z"/%3E%3C/svg%3E'
+        },
+        { 
+          id: 'mountain', 
+          name: 'Mountain Scene', 
+          url: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"%3E%3Cpath fill="white" d="M20 140l40-60 30 40 35-50 45 70z"/%3E%3Ccircle cx="160" cy="40" r="15" fill="white"/%3E%3C/svg%3E'
+        },
+        { 
+          id: 'flower', 
+          name: 'Floral Pattern', 
+          url: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"%3E%3Ccircle cx="100" cy="100" r="15" fill="white"/%3E%3Ccircle cx="100" cy="70" r="20" fill="white" opacity="0.8"/%3E%3Ccircle cx="100" cy="130" r="20" fill="white" opacity="0.8"/%3E%3Ccircle cx="70" cy="100" r="20" fill="white" opacity="0.8"/%3E%3Ccircle cx="130" cy="100" r="20" fill="white" opacity="0.8"/%3E%3Ccircle cx="80" cy="80" r="15" fill="white" opacity="0.6"/%3E%3Ccircle cx="120" cy="80" r="15" fill="white" opacity="0.6"/%3E%3Ccircle cx="80" cy="120" r="15" fill="white" opacity="0.6"/%3E%3Ccircle cx="120" cy="120" r="15" fill="white" opacity="0.6"/%3E%3C/svg%3E'
+        },
+        { 
+          id: 'geometric', 
+          name: 'Geometric Shapes', 
+          url: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"%3E%3Cpolygon points="100,30 150,90 130,150 70,150 50,90" fill="none" stroke="white" stroke-width="3"/%3E%3Ccircle cx="100" cy="100" r="40" fill="none" stroke="white" stroke-width="3"/%3E%3Crect x="80" y="80" width="40" height="40" fill="none" stroke="white" stroke-width="3"/%3E%3C/svg%3E'
+        },
+        { 
+          id: 'coffee', 
+          name: 'Coffee Cup', 
+          url: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"%3E%3Cpath fill="white" d="M60 60h60v70c0 15-10 25-25 25h-10c-15 0-25-10-25-25V60z"/%3E%3Cpath fill="white" d="M120 80h15c8 0 15 7 15 15v10c0 8-7 15-15 15h-15"/%3E%3Cpath fill="none" stroke="white" stroke-width="3" d="M75 45c0-10 5-15 10-15s10 5 10 15M90 45c0-10 5-15 10-15s10 5 10 15M105 45c0-10 5-15 10-15s10 5 10 15"/%3E%3C/svg%3E'
+        },
+        { 
+          id: 'wave', 
+          name: 'Wave Pattern', 
+          url: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"%3E%3Cpath fill="none" stroke="white" stroke-width="4" d="M20 80 Q 50 60, 80 80 T 140 80 T 200 80"/%3E%3Cpath fill="none" stroke="white" stroke-width="4" d="M20 100 Q 50 80, 80 100 T 140 100 T 200 100"/%3E%3Cpath fill="none" stroke="white" stroke-width="4" d="M20 120 Q 50 100, 80 120 T 140 120 T 200 120"/%3E%3C/svg%3E'
+        },
+        { 
+          id: 'star', 
+          name: 'Star Burst', 
+          url: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200"%3E%3Cpolygon points="100,30 115,75 160,80 125,110 135,155 100,130 65,155 75,110 40,80 85,75" fill="white"/%3E%3Ccircle cx="100" cy="100" r="15" fill="white"/%3E%3C/svg%3E'
+        }
       ];
 
       const shirtColors = [
@@ -831,17 +703,6 @@
         }
       };
 
-      const handleFormChange = (field, value) => {
-        setFormData(prev => ({ ...prev, [field]: value }));
-      };
-
-      const handleQuoteSubmit = async (e) => {
-        e.preventDefault();
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        setQuoteSubmitted(true);
-      };
-
       const handleDownload = () => {
         setShowModal(true);
       };
@@ -860,16 +721,10 @@
               </div>
               <nav>
                 <button 
-                  className={activeView === 'quote' ? 'active' : ''}
-                  onClick={() => setActiveView('quote')}
-                >
-                  Get Quote
-                </button>
-                <button 
                   className={activeView === 'design' ? 'active' : ''}
                   onClick={() => setActiveView('design')}
                 >
-                  Design Tool
+                  Design
                 </button>
                 <button 
                   className={activeView === 'gallery' ? 'active' : ''}
@@ -888,208 +743,11 @@
           </header>
 
           <main>
-            {activeView === 'quote' && (
-              <>
-                {!quoteSubmitted ? (
-                  <>
-                    <div className="hero">
-                      <h1>REQUEST A FREE QUOTE</h1>
-                      <p>Tell us about your ministry's printing needs and we'll provide a customized quote within 24 hours. No obligation, just quality service for your mission.</p>
-                    </div>
-
-                    <div className="quote-section">
-                      <div className="form-card">
-                        <form onSubmit={handleQuoteSubmit}>
-                          <div className="form-section">
-                            <div className="form-row">
-                              <div className="form-group">
-                                <label className="form-label">
-                                  Church/Organization Name <span className="required">*</span>
-                                </label>
-                                <input
-                                  type="text"
-                                  className="form-input"
-                                  placeholder="Grace Community Church"
-                                  value={formData.churchName}
-                                  onChange={(e) => handleFormChange('churchName', e.target.value)}
-                                  required
-                                />
-                              </div>
-                              <div className="form-group">
-                                <label className="form-label">
-                                  Contact Name <span className="required">*</span>
-                                </label>
-                                <input
-                                  type="text"
-                                  className="form-input"
-                                  placeholder="John Smith"
-                                  value={formData.contactName}
-                                  onChange={(e) => handleFormChange('contactName', e.target.value)}
-                                  required
-                                />
-                              </div>
-                            </div>
-
-                            <div className="form-row">
-                              <div className="form-group">
-                                <label className="form-label">
-                                  Email Address <span className="required">*</span>
-                                </label>
-                                <input
-                                  type="email"
-                                  className="form-input"
-                                  placeholder="john@church.org"
-                                  value={formData.email}
-                                  onChange={(e) => handleFormChange('email', e.target.value)}
-                                  required
-                                />
-                              </div>
-                              <div className="form-group">
-                                <label className="form-label">Phone Number</label>
-                                <input
-                                  type="tel"
-                                  className="form-input"
-                                  placeholder="(555) 123-4567"
-                                  value={formData.phone}
-                                  onChange={(e) => handleFormChange('phone', e.target.value)}
-                                />
-                              </div>
-                            </div>
-
-                            <div className="form-row">
-                              <div className="form-group">
-                                <label className="form-label">
-                                  Product Type <span className="required">*</span>
-                                </label>
-                                <select
-                                  className="form-select"
-                                  value={formData.productType}
-                                  onChange={(e) => handleFormChange('productType', e.target.value)}
-                                  required
-                                >
-                                  <option value="apparel">Apparel (T-Shirts, Sweaters, Hoodies)</option>
-                                  <option value="flyers">Flyers</option>
-                                  <option value="leaflets">Folded Leaflets</option>
-                                  <option value="posters">Posters</option>
-                                  <option value="booklets">Booklets</option>
-                                  <option value="banners">Banners</option>
-                                  <option value="roller-banners">Roller Banners</option>
-                                </select>
-                              </div>
-                              <div className="form-group">
-                                <label className="form-label">Event/Need-by Date</label>
-                                <input
-                                  type="date"
-                                  className="form-input"
-                                  value={formData.eventDate}
-                                  onChange={(e) => handleFormChange('eventDate', e.target.value)}
-                                />
-                              </div>
-                            </div>
-
-                            <div className="form-row">
-                              <div className="form-group">
-                                <label className="form-label">
-                                  Quantity <span className="required">*</span>
-                                </label>
-                                <input
-                                  type="text"
-                                  className="form-input"
-                                  placeholder="e.g., 50 t-shirts, 100 flyers"
-                                  value={formData.quantity}
-                                  onChange={(e) => handleFormChange('quantity', e.target.value)}
-                                  required
-                                />
-                              </div>
-                              <div className="form-group">
-                                <label className="form-label">Sizes (if apparel)</label>
-                                <input
-                                  type="text"
-                                  className="form-input"
-                                  placeholder="e.g., 10 Small, 20 Medium, 20 Large"
-                                  value={formData.sizes}
-                                  onChange={(e) => handleFormChange('sizes', e.target.value)}
-                                />
-                              </div>
-                            </div>
-
-                            <div className="form-group">
-                              <label className="form-label">
-                                Project Details <span className="required">*</span>
-                              </label>
-                              <textarea
-                                className="form-textarea"
-                                placeholder="Tell us about your project, design ideas, colors, text you want printed, and any special requirements..."
-                                value={formData.message}
-                                onChange={(e) => handleFormChange('message', e.target.value)}
-                                required
-                              />
-                              <p className="form-note">
-                                Tip: If you have a design in mind, you can use our Design Tool to preview it, then mention it here!
-                              </p>
-                            </div>
-                          </div>
-
-                          <button type="submit" className="btn btn-primary" style={{ width: '100%' }}>
-                            Request Free Quote
-                          </button>
-
-                          <p style={{ 
-                            textAlign: 'center', 
-                            fontSize: '0.85rem', 
-                            color: 'var(--clay-brown)', 
-                            marginTop: '1.5rem',
-                            fontStyle: 'italic'
-                          }}>
-                            By submitting this form, you agree to our privacy policy. We'll never share your information with third parties.
-                          </p>
-                        </form>
-                      </div>
-                    </div>
-                  </>
-                ) : (
-                  <div className="quote-section">
-                    <div className="success-card">
-                      <div className="success-icon">
-                        <svg fill="none" viewBox="0 0 24 24">
-                          <polyline points="20 6 9 17 4 12" />
-                        </svg>
-                      </div>
-                      <h2>QUOTE REQUEST RECEIVED!</h2>
-                      <p>
-                        Thank you for your request! We've received your details and will review them carefully. 
-                        Expect to hear from us within 24 hours with a personalized quote for your ministry's printing needs.
-                      </p>
-                      <button 
-                        className="btn btn-primary"
-                        onClick={() => {
-                          setQuoteSubmitted(false);
-                          setFormData({
-                            churchName: '',
-                            contactName: '',
-                            email: '',
-                            phone: '',
-                            productType: 'apparel',
-                            quantity: '',
-                            sizes: '',
-                            eventDate: '',
-                            message: '',
-                          });
-                        }}
-                      >
-                        Submit Another Request
-                      </button>
-                    </div>
-                  </div>
-                )}
-              </>
-            )}
-
             {activeView === 'design' && (
               <>
                 <div className="hero">
-                  <h1>DESIGN YOUR MINISTRY PRINTS</h1>
-                  <p>Create custom t-shirts with our intuitive studio. Choose colors, add text, preview your design, then request a quote!</p>
+                  <h1>CREATE YOUR MINISTRY PRINTS</h1>
+                  <p>From inspiring t-shirts to powerful event materials, we bring your ministry's message and vision to life.</p>
                 </div>
 
                 <div className="design-studio">
@@ -1195,7 +853,7 @@
                         style={{ backgroundColor: shirtColor }}
                       >
                         <div className="design-content">
-                          {selectedTemplate !== 'none' && (
+                        {selectedTemplate !== 'none' && (
                             <div className="image-text-combo">
                               <img 
                                 src={templateDesigns.find(t => t.id === selectedTemplate)?.url}
@@ -1224,14 +882,8 @@
                         </div>
                       </div>
                       <div className="action-buttons">
-                        <button 
-                          className="btn btn-primary" 
-                          onClick={() => {
-                            handleFormChange('message', `Design Preview:\n- Main Text: ${designText}\n- Subtitle: ${subText}\n- Template: ${templateDesigns.find(t => t.id === selectedTemplate)?.name}\n- Shirt Color: ${shirtColors.find(c => c.value === shirtColor)?.name}\n- Text Color: ${textColors.find(c => c.value === textColor)?.name}\n\nAdditional Details:\n`);
-                            setActiveView('quote');
-                          }}
-                        >
-                          Get Quote for This Design
+                        <button className="btn btn-primary" onClick={handleOrder}>
+                          Order Print
                         </button>
                         <button className="btn btn-secondary" onClick={handleDownload}>
                           Save Design
@@ -1297,8 +949,9 @@
                     color: 'var(--clay-brown)',
                     marginBottom: '2rem'
                   }}>
-                    For years, we've been blessed to serve churches and Christian organizations across the UK. We don't just print—we partner with you to spread your ministry's message through quality custom products.
-                    From small community churches to large ministries, we treat every order with the same dedication and care. Your mission is our mission.
+                    For years, we've been blessed to serve churches and Christian organizations across the UK. We don't just print, we partner with you to spread your ministry's message through quality custom products.
+                    From small community churches to large ministries, we treat every order with the same dedication and care. Your mission is our mission..
+
                   </p>
                   <p style={{ 
                     fontFamily: "'Crimson Text', serif", 
@@ -1313,9 +966,9 @@
                   <div className="action-buttons" style={{ justifyContent: 'center', marginTop: '3rem' }}>
                     <button 
                       className="btn btn-primary"
-                      onClick={() => setActiveView('quote')}
+                      onClick={() => setActiveView('design')}
                     >
-                      Request A Quote
+                      Start Designing
                     </button>
                   </div>
                 </div>
@@ -1331,10 +984,13 @@
             <div className="modal-overlay" onClick={() => setShowModal(false)}>
               <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                 <button className="modal-close" onClick={() => setShowModal(false)}>×</button>
-                <h2>SAVE YOUR DESIGN</h2>
+                <h2>COMING SOON</h2>
                 <p>
-                  To save your design, take a screenshot of the preview. When you're ready to order, 
-                  click "Get Quote for This Design" and we'll include your design details in the quote request!
+                  Our printing and ordering system is currently in development. 
+                  For now, take a screenshot of your design and reach out to us directly to place an order!
+                </p>
+                <p style={{ fontSize: '1rem', opacity: 0.7 }}>
+                  Contact: hello@job87print.com
                 </p>
                 <button 
                   className="btn btn-primary" 
@@ -1349,10 +1005,8 @@
         </div>
       );
     }
-    
-    ReactDOM.render(<App />, document.getElementById('root'));
 
- 
+    ReactDOM.render(<App />, document.getElementById('root'));
   </script>
 </body>
 </html>
